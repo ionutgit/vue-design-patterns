@@ -14,18 +14,11 @@
               />
             </div>
             <div class="mb-2">
-              <input
-                type="email"
-                class="form-control"
-                placeholder="E-mail"
-                v-model="newsletterEmail"
-                :class="{
-                  'is-valid':
-                    newsletterEmail.length >= 4 && newsletterEmail.length > 0,
-                  'is-invalid':
-                    newsletterEmail.length < 4 && newsletterEmail.length > 0,
-                }"
-              />
+              <email-input v-model="newsletterEmail"/>
+              <!-- <email-input 
+                :modelValue="newsletterEmail"
+                @update:modelValue="newsletterEmail = $event"
+              /> -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -36,6 +29,8 @@
 </template>
 
 <script>
+import EmailInput from './components/EmailInput.vue';
+
 export default {
   name: "App",
   data() {
@@ -43,6 +38,9 @@ export default {
       newsletterName: "",
       newsletterEmail: "",
     };
+  },
+  components: {
+    EmailInput
   },
   methods: {
     submit() {
